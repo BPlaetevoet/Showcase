@@ -1,0 +1,7 @@
+parameters:
+#    bplaetevoet_home.example.class: Bplaetevoet\HomeBundle\Example
+
+services:
+#    bplaetevoet_home.example:
+#        class: %bplaetevoet_home.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

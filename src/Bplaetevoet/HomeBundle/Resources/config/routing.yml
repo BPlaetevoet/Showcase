@@ -1,0 +1,3 @@
+bplaetevoet_home_homepage:
+    pattern:  /
+    defaults: { _controller: BplaetevoetHomeBundle:Home:index }

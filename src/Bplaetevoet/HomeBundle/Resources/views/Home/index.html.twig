@@ -1,0 +1,12 @@
+{# src/Bplaetevoet/HomeBundle/Resources/views/Home/index.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    Hello Bart Plaetevoet
+    
+    {% for project in projects %}
+    {{ project.naam }}<br />
+    {{ project.omschrijving }}
+    {% endfor %}
+{% endblock %}
