@@ -1,32 +1,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
+        <meta content="Portfolio site van Bart Plaetevoet - Student PHP Developer @ VDAB 2014" name="description"></meta>
+        <meta content="php, symfony, doctrine, portfolio" name="keywords"></meta>
+        <title>{% block title %}BPlaetevoet PHP Developer{% endblock %}</title>
         {% block stylesheets %}
-            <link href="{{ asset('bundles/Bplaetevoet/css/Bplaetevoet.css') }}" rel="stylesheet" type="text/css" />
+{#            {% stylesheets '@BplaetevoetHomeBundle/Resources/public/css/*' output='css/main.css' %}#}
+            {% stylesheets 'bundles/bplaetevoethome/css/*' filter='cssrewrite' output='css/main.css'%}
+                <link type="text/css" rel="stylesheet" media="all" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block javascripts %}
+        {% javascripts '@BplaetevoetHomeBundle/Resources/public/js/*' output='js/scripts.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
     </head>
     <body>
         {% block body %}
             <header>
-                {% block header %}
+                {% block navigatie %}
+                    <nav id="top-navigatie">
+                        <ul class="container">
+                            <li><a href="home">Home</a></li>
+                            <li><a href="opleiding">Opleiding</a></li>
+                            <li><a href="projects">Projecten</a></li>
+                            <li><a href="contact">Contact</a></li>
+			</ul>
+                    </nav>
                 {% endblock %}
             </header>
                 {% block content %}
-            <section class="content">
-                <div class="container">
-                    
-                </div>
-            </section>
+           
                 {% endblock %}
                 
             <footer>
                 {% block footer %}
+                    <div class="container">
+                        
+                            <div class="footer-col text-center">
+                                <h3>Copyright &copy; 2014</h3>
+                                <ul>
+                                    <li>Bart Plaetevoet</li>
+                                    {#<li>Dekemelelaan 29</li>
+                                    <li>8904 Boezinge</li> #}
+                                    <li><a href="mailto:Bart.Plaetevoet@Telenet.be">Bart.Plaetevoet<strong>&#64;</strong>Telenet.be</a></li>
+                                </ul>
+                            </div>
+                        
+                    </div>
                 {% endblock %}
             </footer>
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        
     </body>
 </html>

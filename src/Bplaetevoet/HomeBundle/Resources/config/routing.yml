@@ -1,3 +1,11 @@
-bplaetevoet_home_homepage:
+bplaetevoet_home_index:
     pattern:  /
     defaults: { _controller: BplaetevoetHomeBundle:Home:index }
+
+bplaetevoet_home_homepage:
+    pattern:  /home
+    defaults: { _controller: BplaetevoetHomeBundle:Home:index }
+    
+bplaetevoet_home_projects:
+    pattern: /projects
+    defaults: { _controller: BplaetevoetHomeBundle:Home:projectlist }

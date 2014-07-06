@@ -1,0 +1,179 @@
+/*
+    BPlaetevoet main CSS file
+
+    Created on : 4-jul-2014, 18:37:45
+    Author     : Bart Plaetevoet
+*/
+@font-face{
+	font-family:'FontAwesome';
+	src:url('../../bundles/bplaetevoethome/css/font/fontawesome-webfont.eot?v=4.0.1');
+	src:url('../../bundles/bplaetevoethome/css/font/fontawesome-webfont.eot?#iefix&v=4.0.1') format('embedded-opentype'),url('../../bundles/bplaetevoethome/css/font/fontawesome-webfont.woff?v=4.0.1') format('woff'),url('../../bundles/bplaetevoethome/css/font/fontawesome-webfont.ttf?v=4.0.1') format('truetype'),url('../../bundles/bplaetevoethome/css/font/fontawesome-webfont.svg?v=4.0.1#fontawesomeregular') format('svg');
+	font-weight:normal;
+	font-style:normal
+}
+/*********************************************************************************/
+/* Algemeen                                                                        */
+/*********************************************************************************/
+body{
+    background-color:#ccc222;
+}
+header, footer{
+   background-color: #282828;
+}
+footer{
+    margin-top: 50px;
+    color: #ccc;
+    padding-bottom:25px;
+}
+footer h3 {
+    font-weight: 600;
+    color:#ccc222;
+    text-transform: uppercase;
+}
+footer ul{
+    margin:0px;
+    padding:0px;
+}
+footer li{
+    list-style-type:none;
+    line-height:20px;
+}
+footer li > a{
+    color:inherit;
+    text-decoration:none;
+    
+    transition: color 0.5s ease 0.2s;
+}
+footer li >a:hover{
+    text-decoration:none;
+    color: #ccc222;
+}
+.wrapper-style1{
+    background-color:#282828;
+    color:white;
+}
+#top-navigatie{
+    background-color: #282828;
+    text-align:center;
+    position:fixed;
+    left:0px;
+    top:0px;
+    width:100%;
+    z-index:1000;
+    cursor:default;
+}
+#top-navigatie ul {
+    margin-bottom:0px;
+}
+#top-navigatie li {
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out 0s;
+    transition: color 0.3s ease-in-out 0s;
+}
+#top-navigatie a {
+    padding: 0.2em 1em;
+    margin: 0.6em 0.2em;
+    font-weight:600;
+    border-radius:8px;
+    
+    color: #fff;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    outline: 0px none;
+}
+#top-navigatie li:hover{
+    background-color: #2a6496;
+    
+}
+.intro, .quote{
+    padding-top:120px;
+}
+.projects, .middle{
+    margin-top: 60px;
+    background-color:#f4f4f4;
+    height:100%;
+    width:100%;
+    padding : 0.4em;
+    box-shadow:6px 0px 6px 0px rgba(0,0,0,0.75);
+ }
+.new-project{
+    transition: all 0.5s ease 0.2s;
+    background-color: #f4f4f4;
+    position: relative;
+    float: left;
+    height: 250px;
+    width: 46%;
+}
+.new-project:nth-child(odd){
+    border-right: 1px solid #ccc;
+}
+.new-project a{
+    text-decoration:none;
+}
+.new-project a img{
+    width:50%;
+    float:left;
+    border-radius:6px;
+    padding:0px 5px;
+}
+.new-project a h3{
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 5px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    font-weight:400;
+}
+.new-project a .site-info{
+    display: block;
+    color:#808080;
+    font-size:12px;
+    font-family: Verdana, Helvetica;
+    line-height:20px;
+    padding-left: 10px;
+    padding-bottom:25px;
+}
+.new-project:nth-child(odd):hover{
+    background-color: white;
+    position: relative;
+    left:-20px;
+}
+.new-project:nth-child(even):hover{
+    background-color: white;
+    position: relative;
+    left:20px;
+}
+.new-project:hover h3{
+    font-weight:600;
+    color:green;
+}
+.new-project:hover a .site-info{
+    color: #000;
+}
+.carroussel{
+    margin-top:5em;
+}
+/*********************************************************************************/
+/* Coding-sprite                                                                 */
+/*********************************************************************************/
+.coding-sprite { 
+    background: url('../../bundles/bplaetevoethome/css/images/coding-sprite.png') no-repeat top left; 
+    background-size: 163.5px 2011px;
+    width: 163.5px; 
+    height: 167.6px;
+    float: left;
+    margin-right:0.2em;
+} 
+.coding-sprite.bootstrap { background-position: 0px 0px; transition: all 1s ease-in-out 0.2s; } 
+.coding-sprite.bootstrap:hover { background-position: 0px -167.6px;  } 
+.coding-sprite.css { background-position: 0px -335.2px; transition: all 1s ease-in-out 0.2s; } 
+.coding-sprite.css:hover { background-position: 0px -502.8px;  } 
+.coding-sprite.doctrine { background-position: 0px -670.4px; transition: all 1s ease-in-out 0.2s; } 
+.coding-sprite.doctrine:hover { background-position: 0px -838px;  } 
+.coding-sprite.html5{ background-position: 0px -1005.6px; transition: all 1s ease-in-out 0.2s; } 
+.coding-sprite.html5:hover { background-position: 0px -1173.2px;  } 
+.coding-sprite.sf { background-position: 0px -1340.8px; transition: all 1s ease-in-out 0.2s; } 
+.coding-sprite.sf:hover { background-position: 0px -1508.4px;  } 
+.coding-sprite.php { background-position: 0px -1676px; transition: all 1s ease-in-out 0.2s; } 
+.coding-sprite.php:hover { background-position: 0px -1843.6px;  } 

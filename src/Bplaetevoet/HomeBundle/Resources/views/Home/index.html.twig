@@ -3,10 +3,46 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-    <h1> Hello Bart Plaetevoet</h1>
-    
-    {% for project in projects %}
-    {{ project.naam }}<br />
-    {{ project.omschrijving }}
-    {% endfor %}
+    <div class="container">
+        <article class="intro">
+            <div class="col-sm-4 col-xs-12">
+                {% image '@BplaetevoetHomeBundle/Resources/public/images/me.jpg' output='images/me.jpg' %}
+                <img class="img-circle" src="{{ asset_url }}" alt="Bart Plaetevoet" />
+                {% endimage %}
+            </div>
+            <div class="col-sm-7 col-sm-offset-1">
+                <h1>Hi. I'm <strong>Bart Plaetevoet</strong>.</h1>
+                <p><strong>Student PHP ontwikkelaar  &#64; VDAB Competentiecentrum Wevelgem</strong></p>
+                <p></p>
+                <a href="#work"><button class="btn btn-default">Bekijk mijn CV</button></a>
+            </div>
+	</article>
+    </div>
+    <section class="middle">
+        <div class="container">
+            <span class="coding-sprite bootstrap"></span>
+                <span class="coding-sprite css"></span>
+                <span class="coding-sprite doctrine"></span>
+                <span class="coding-sprite html5"></span>
+                <span class="coding-sprite sf"></span>
+                <span class="coding-sprite php"></span>
+        </div>
+    </section>
+        <div class="container">
+            <div class="quote">
+                <div class="col-sm-7">
+                    <p class="text-center quote"><strong>
+                        Give a man a program, frustrate him for a day.<br />
+                        Teach a man to program, frustrate him for a lifetime.<br />
+                        </strong></p>
+                    <p class="text-right">― Muhammad Waseem</p>
+                </div>
+                <div class="col-sm-4 col-sm-offset-1">
+                    {% image '@BplaetevoetHomeBundle/Resources/public/images/coding.png' output='images/coding.png' %}
+                    <img class=img-circle src="{{ asset_url }}" alt="coding-werkplaats" />
+                    {% endimage %}
+                </div>
+            </div>
+        </div>
+           
 {% endblock %}

@@ -4,3 +4,5 @@
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
+/bin/
+/nbproject/private/

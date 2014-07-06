@@ -1,0 +1,28 @@
+{# src/Bplaetevoet/HomeBundle/Resources/views/Home/projecten.html.twig #}
+{% extends '::base.html.twig' %}
+{% block content %}
+    {% for project in projects %}
+        <section class="projects">
+            <div class="container">
+            
+                <div class="new-project">
+                <a href="projecten/{{project.naam}}">
+                <img src="{{ asset('bundles/bplaetevoethome/images/projects/'~project.afbeelding~'') }}" alt="{{project.naam}}"/>
+                <h3 class="text-center">{{ project.naam }}</h3>
+                <ul class="tags">
+                    {% for value in project.skills %}
+                        {% for item in value %}
+                            <li>{{item.naam}}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+                    <p class="site-info">{{project.omschrijving}}</p>
+                </a>
+                </div>        
+            </div>
+           
+    </section>
+            {% endfor %}
+            
+
+{% endblock %}
