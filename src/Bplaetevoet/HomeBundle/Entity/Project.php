@@ -4,10 +4,10 @@ namespace Bplaetevoet\HomeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Project
  * @ORM\HaslifecycleCallbacks() 
- * 
  * @ORM\Entity(repositoryClass="Bplaetevoet\HomeBundle\Entity\ProjectRepository")
  * @ORM\Table(name="projects")
  */
@@ -48,7 +48,10 @@ class Project{
      * @ORM\Column(type="string", length=100)
      */
     protected $afbeelding;
-    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Skill", mappedBy="project", cascade={"persist"})

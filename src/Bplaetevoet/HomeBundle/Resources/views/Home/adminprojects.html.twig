@@ -1,0 +1,32 @@
+{# src/Bplaetevoet/HomeBundle/Resources/views/Home/adminprojects.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="intro">
+        <h2>Lijst van projecten</h2>
+        
+            {% for project in projecten %}
+                <section class="middle">
+                    <h3>{{project.naam}}</h3>
+                        <ul>    
+                            <li>url : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a></li>
+                            <li>Omschrijving: <br />
+                                {{ project.omschrijving|nl2br }}
+                            </li>
+                            <li>afbeelding: {{project.afbeelding}}</li>
+                        </ul>
+                    <a href="{{ path ('bplaetevoet_admin_editproject',  {projectnaam:project.naam}) }}">edit</a>
+                </section>
+            {% endfor %}
+        
+        </div>
+    </div>
+    <section class="middle">
+        <div class="container">
+            {{ form(form) }}
+        </div>
+
+    </section>
+    {% endblock %}

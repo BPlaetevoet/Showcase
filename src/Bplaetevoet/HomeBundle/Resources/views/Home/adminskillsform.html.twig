@@ -1,0 +1,31 @@
+{# src/Bplaetevoet/HomeBundle/Resources/views/Home/addproject.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="intro">
+        <h2>Lijst van skills</h2>
+        
+            {% for skill in skills %}
+                <div class="blocks">
+                    <h3>{{skill.naam}}</h3>
+                        <ul>    
+                            <li>url : {{ skill.url }}</li>
+                            <li>Omschrijving: <br />
+                                {{ skill.omschrijving|nl2br }}
+                            </li>
+                        </ul>
+                    <a href="{{ path ('bplaetevoet_admin_editskill',  {skillnaam:skill.naam}) }}">edit</a>
+                </div>
+            {% endfor %}
+        
+        </div>
+    </div>
+    <section class="middle">
+        <div class="container">
+            {{ form(form) }}
+        </div>
+
+    </section>
+    {% endblock %}

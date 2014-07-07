@@ -155,11 +155,53 @@ footer li >a:hover{
 .carroussel{
     margin-top:5em;
 }
+.blocks {
+	width: 22%;
+	height:250px;
+	display:block;
+	float:left;
+        border-radius: 5px;
+        border: 2px solid #a0981b;
+	background-color: #fff;
+	margin:10px;
+}
+.blocks h3{
+    font-weight:600;
+    text-align: center;
+    color: #ccc222;
+    border-bottom: 1px solid #ccc222;
+    padding-bottom:7px;
+}
+.blocks ul {
+	margin:5px;
+	padding:0px;
+}
+.blocks li {
+	list-style-type: none;
+	line-height: 20px;
+        padding:7px 0px;
+}
+/*********************************************************************************/
+/* Forms                                                                         */
+/*********************************************************************************/
+form label {
+	color: #a0918b;
+	padding-right:5px;
+	
+}
+form input, textarea {
+	color:#c1c1c1;
+	padding:4px;
+	width:400px;
+	display: block;
+	border-radius:4px;
+}
+
 /*********************************************************************************/
 /* Coding-sprite                                                                 */
 /*********************************************************************************/
 .coding-sprite { 
-    background: url('images/coding-sprite.png') no-repeat top left; 
+    background: url('../images/coding-sprite.png') no-repeat top left; 
     background-size: 163.5px 2011px;
     width: 163.5px; 
     height: 167.6px;

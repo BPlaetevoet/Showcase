@@ -5,7 +5,7 @@ namespace Bplaetevoet\HomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Bplaetevoet\HomeBundle\Entity\SkillRepository")
  * @ORM\Table(name="skills")
  */
 class Skill
@@ -35,10 +35,10 @@ class Skill
     protected $omschrijving;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
+     * @var string
+     * @ORM\Column(type="string")
      */
-    protected $level;
+    protected $url;
 
 
     /**
@@ -120,14 +120,14 @@ class Skill
     }
 
     /**
-     * Set level
+     * Set url
      *
-     * @param integer $level
+     * @param string $url
      * @return Skill
      */
-    public function setLevel($level)
+    public function setUrl($url)
     {
-        $this->level = $level;
+        $this->url = $url;
 
         return $this;
     }
@@ -137,8 +137,8 @@ class Skill
      *
      * @return integer 
      */
-    public function getLevel()
+    public function getUrl()
     {
-        return $this->level;
+        return $this->url;
     }
 }

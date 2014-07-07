@@ -5883,26 +5883,32 @@ footer li >a:hover{
     padding : 0.4em;
     box-shadow:6px 0px 6px 0px rgba(0,0,0,0.75);
  }
+ .projects:nth-child(odd) .new-project a img{
+     float:right;
+ }
 .new-project{
     transition: all 0.5s ease 0.2s;
     background-color: #f4f4f4;
     position: relative;
     float: left;
-    height: 250px;
-    width: 46%;
+    height: 400px;
+    width: 100%;
+    overflow:auto;
 }
 .new-project:nth-child(odd){
     border-right: 1px solid #ccc;
 }
+
 .new-project a{
     text-decoration:none;
 }
 .new-project a img{
-    width:50%;
+    max-width:40%;
     float:left;
     border-radius:6px;
     padding:0px 5px;
 }
+
 .new-project a h3{
     text-transform: uppercase;
     font-size: 16px;
@@ -5920,16 +5926,11 @@ footer li >a:hover{
     padding-left: 10px;
     padding-bottom:25px;
 }
-.new-project:nth-child(odd):hover{
-    background-color: white;
+.new-project:hover{
     position: relative;
-    left:-20px;
+    top:-20px;
 }
-.new-project:nth-child(even):hover{
-    background-color: white;
-    position: relative;
-    left:20px;
-}
+
 .new-project:hover h3{
     font-weight:600;
     color:green;
@@ -5944,7 +5945,7 @@ footer li >a:hover{
 /* Coding-sprite                                                                 */
 /*********************************************************************************/
 .coding-sprite { 
-    background: url('../../bundles/bplaetevoethome/css/images/coding-sprite.png') no-repeat top left; 
+    background: url('../../bundles/bplaetevoethome/images/coding-sprite.png') no-repeat top left; 
     background-size: 163.5px 2011px;
     width: 163.5px; 
     height: 167.6px;

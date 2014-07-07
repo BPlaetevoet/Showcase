@@ -6,8 +6,8 @@
         <meta content="php, symfony, doctrine, portfolio" name="keywords"></meta>
         <title>{% block title %}BPlaetevoet PHP Developer{% endblock %}</title>
         {% block stylesheets %}
-{#            {% stylesheets '@BplaetevoetHomeBundle/Resources/public/css/*' output='css/main.css' %}#}
-            {% stylesheets 'bundles/bplaetevoethome/css/*' filter='cssrewrite' output='css/main.css'%}
+            {% stylesheets '@BplaetevoetHomeBundle/Resources/public/css/*' output='bundles/bplaetevoethome/css/main.css' %}
+{#            {% stylesheets 'bundles/bplaetevoethome/css/*' filter='cssrewrite' output='css/main.css'%}#}
                 <link type="text/css" rel="stylesheet" media="all" href="{{ asset_url }}" />
             {% endstylesheets %}
 
@@ -25,10 +25,10 @@
                 {% block navigatie %}
                     <nav id="top-navigatie">
                         <ul class="container">
-                            <li><a href="home">Home</a></li>
-                            <li><a href="opleiding">Opleiding</a></li>
-                            <li><a href="projects">Projecten</a></li>
-                            <li><a href="contact">Contact</a></li>
+                            <li><a href="{{ path ('bplaetevoet_home_homepage') }}">Home</a></li>
+                            <li><a href="{{ path ('bplaetevoet_home_opleiding') }}">Opleiding</a></li>
+                            <li><a href="{{ path ('bplaetevoet_home_projectlist') }}">Projecten</a></li>
+                            <li><a href="{{ path ('bplaetevoet_home_contact') }}">Contact</a></li>
 			</ul>
                     </nav>
                 {% endblock %}

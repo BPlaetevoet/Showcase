@@ -3,7 +3,8 @@
 namespace Bplaetevoet\HomeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Bplaetevoet\HomeBundle\Entity\Project;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller{
     public function indexAction(){
@@ -17,6 +18,7 @@ class HomeController extends Controller{
         $projects = $em->getRepository("BplaetevoetHomeBundle:Project")->findAll();
         return $this->render('BplaetevoetHomeBundle:Home:projecten.html.twig', array('projects'=>$projects));
     }
+
 }
 
 
