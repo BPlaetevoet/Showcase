@@ -1,0 +1,56 @@
+{# src/Bplaetevoet/HomeBundle/Resources/views/Home/contact.html.twig #}
+{% extends '::base.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="intro">
+            <aside id="contactform" class="col-sm-6">
+            <h2> Contacteer mij</h2>
+            <p>Heeft u vragen of opmerkingen gebruik dan onderstaand formulier om contact met mij op te nemen</p>
+            {{form_start(form)}}
+                {{form_errors(form)}}
+                <div class="form-group">
+                    {{form_label(form.naam, 'Naam:')}}
+                    {{form_errors(form.naam)}}
+                    {{form_widget(form.naam)}}
+                </div>
+                <div class="form-group">
+                    {{form_label(form.email, 'E-Mail:')}}
+                    {{form_errors(form.email)}}
+                    {{form_widget(form.email)}}
+                </div>
+                <div class="form-group">
+                    {{form_label(form.boodschap, 'Uw boodschap:')}}
+                    {{form_errors(form.boodschap)}}
+                    {{form_widget(form.boodschap)}}
+                </div>
+                <div class="">
+                    {{form_widget(form.verzenden, {'attr':{'class':'btn btn-default'}}) }}
+            </aside>
+            <aside id="adres" class="col-sm-5 col-sm-offset-1 text-center">
+                <h3>Bart Plaetevoet</h3>
+                <address>
+                    <ul>
+                        <li>Dekemelelaan 29</li>
+                        <li>8904 Boezinge</li>
+                        <li>0494/231.456</li>
+                        <li>Bart.Plaetevoet&#64;Telenet.be</li>
+                    </ul>
+                </address>
+                <h3> Connect on ...</h3>
+                <ul>
+                    <li><a href="http://be.linkedin.com/pub/bart-plaetevoet/95/8b2/921" target="_blank">linkedin</a></li>
+                    <li><a href="https://twitter.com/BPlaetevoet" target="_blank">twitter</a></li>
+                    <li><a href="https://www.facebook.com/bart.plaetevoet" target="_blank">facebook</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+        <div class="middle">
+
+              {% image '@BplaetevoetHomeBundle/Resources/public/images/googlemap.jpg' output='images/googlemap.jpg' %}
+              <img class="img-responsive" src="{{ asset_url }}" />
+              {% endimage %}
+         
+        </div>
+    </div>
+{% endblock %}

@@ -18,6 +18,27 @@ class HomeController extends Controller{
         $projects = $em->getRepository("BplaetevoetHomeBundle:Project")->findAll();
         return $this->render('BplaetevoetHomeBundle:Home:projecten.html.twig', array('projects'=>$projects));
     }
+    public function contactAction(Request $request){
+        $data = array();
+        $form = $this->createFormBuilder($data)
+                ->add('naam', 'text')
+                ->add('email', 'email')
+                ->add('boodschap', 'textarea')
+                ->add('verzenden', 'submit')
+                ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if($form->isValid()){
+            $message = $naam.' liet volgend bericht na via het contactformulier : \\n';
+            $mail = mail('MY_EMAIL', 'FORM_SUBJECT', $message.' from '.$E-mail );
+            if($mail){
+                return $this->render('BplaetevoetHomeBundle:Home:contact.html.twig', array('flashmessage'=> 'Bedankt voor uw feedback'));
+            }
+        }
+        return $this->render('BplaetevoetHomeBundle:Home:contact.html.twig', array('form'=>$form->createView(),));
+        
+    }
 
 }
 
