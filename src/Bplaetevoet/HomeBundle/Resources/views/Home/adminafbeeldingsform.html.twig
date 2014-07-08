@@ -1,0 +1,15 @@
+{# /src/Bplaetevoet/HomeBundle/Resources/views/Home/adminafbeeldingsform.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="intro">
+        <div class="container">
+            {% if afbeelding is defined %}
+                {{ afbeelding.naam }}<br />
+                <img src="{{ asset('uploads/images/') }}{{afbeelding.path}}" />
+                <br />
+            {% endif %}
+            {{form(form)}}
+        </div>
+    </div>
+{% endblock %}

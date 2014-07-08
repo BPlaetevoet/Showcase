@@ -4,7 +4,7 @@ namespace Bplaetevoet\HomeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Project
  * @ORM\HaslifecycleCallbacks() 
@@ -41,17 +41,13 @@ class Project{
      * @ORM\Column(type="string", length=100)
      */
     protected $url;
-    
+
     /**
-     * @var string
+     * @var integer
      * 
-     * @ORM\Column(type="string", length=100)
+     * @ORM\OneToMany(targetEntity="Afbeelding", mappedBy="project")
      */
-    protected $afbeelding;
-    /**
-     * @Assert\File(maxSize="6000000")
-     */
-    public $file;
+    protected $afbeeldingen;
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Skill", mappedBy="project", cascade={"persist"})
@@ -139,19 +135,26 @@ class Project{
      * @param string $afbeelding
      * @return Project
      */
-    public function setAfbeelding($afbeelding){
-        $this->afbeelding = $afbeelding;
+    public function setAfbeeldingen($afbeeldingen){
+        $this->afbeeldingen = new ArrayCollection();
         return $this;
+    }
+    /**
+     * 
+     * @param \Bplaetevoet\HomeBundle\Entity\Afbeelding $afbeelding
+     */
+    public function addAfbeelding(Afbeelding $afbeelding){
+        $this->afbeeldingen->add($afbeelding);
     }
     /**
      * Get afbeelding
      * 
      * @return string
      */
-    public function getAfbeelding(){
-        return $this->afbeelding;
+    public function getAfbeeldingen(){
+        return $this->afbeeldingen;
     }
-    
+  
     /**
      * Set skills
      * 

@@ -15,7 +15,7 @@
                             <li>Omschrijving: <br />
                                 {{ project.omschrijving|nl2br }}
                             </li>
-                            <li>afbeelding: {{project.afbeelding}}</li>
+                           
                         </ul>
                     <a href="{{ path ('bplaetevoet_admin_editproject',  {projectnaam:project.naam}) }}">edit</a>
                 </section>
@@ -27,6 +27,5 @@
         <div class="container">
             {{ form(form) }}
         </div>
-
-    </section>
+   </section>
     {% endblock %}

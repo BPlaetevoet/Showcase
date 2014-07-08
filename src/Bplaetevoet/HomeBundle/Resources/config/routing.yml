@@ -34,4 +34,10 @@ bplaetevoet_admin_editproject:
     pattern: /admin/editproject/{projectnaam}
     defaults: { _controller: BplaetevoetHomeBundle:Admin:editproject }
     
-
+bplaetevoet_admin_addimage:
+    pattern: /admin/addimage
+    defaults: { _controller: BplaetevoetHomeBundle:Admin:addafbeelding }
+    
+bplaetevoet_admin_addfullproject:
+    pattern: /admin/test
+    defaults: { _controller: BplaetevoetHomeBundle:Admin:addfullprojecttest }
