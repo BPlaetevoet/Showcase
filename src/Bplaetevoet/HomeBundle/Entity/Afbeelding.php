@@ -25,12 +25,7 @@ class Afbeelding{
      * 
      * @ORM\Column(type="string", length=100)
      */
-    protected $naam;
-    /**
-     * @var string
-     * 
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
+ 
     protected $path;
     /**
      * Image file
@@ -133,22 +128,7 @@ class Afbeelding{
     public function getFile(){
         return $this->file;
     }
-    /**
-     * 
-     * @param type $naam
-     * @return Afbeelding
-     */
-    public function setNaam($naam){
-        $this->naam = $naam;
-        return $this;
-    }
-    /**
-     * 
-     * @return string
-     */
-    public function getNaam(){
-        return $this->naam;
-    }
+   
     /**
      * 
      * @param type $project
@@ -164,6 +144,9 @@ class Afbeelding{
      */
     public function getProject(){
         return $this->project;
+    }
+    public function getPath(){
+        return $this->path;
     }
 }
 

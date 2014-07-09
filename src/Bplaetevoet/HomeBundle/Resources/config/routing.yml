@@ -12,12 +12,16 @@ bplaetevoet_home_projectlist:
     
 bplaetevoet_home_opleiding:
     pattern: /opleiding
-    defaults: { _controller: BplaetevoetHomeBundle:Home:opleidingoverzicht }
+    defaults: { _controller: BplaetevoetHomeBundle:Home:opleiding }
     
 bplaetevoet_home_contact:
     pattern: /contact
     defaults: { _controller: BplaetevoetHomeBundle:Home:contact }
 
+bplaetevoet_admin_adminmenu:
+    pattern: /admin
+    defaults: { _controller: BplaetevoetHomeBundle:Admin:index }
+    
 bplaetevoet_admin_addskill:
     pattern: /admin/addskill
     defaults: { _controller: BplaetevoetHomeBundle:Admin:addskill }

@@ -10,7 +10,8 @@ class RegisterProjectType extends AbstractType{
         
         $builder
                 ->add('project', new ProjectType())
-                ->add('afbeelding', new AfbeeldingType());
+                ->add('afbeelding', new AfbeeldingType())
+                ->add('skills', new SkillsType());
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

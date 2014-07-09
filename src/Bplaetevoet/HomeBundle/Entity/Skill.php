@@ -28,19 +28,7 @@ class Skill
      * @ORM\ManyToMany(targetEntity="Project", inversedBy="skills")
      */
     protected $project;
-    /**
-     * @var string
-     * @ORM\Column(type="text")
-     */
-    protected $omschrijving;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    protected $url;
-
-
+    
     /**
      * Get id
      *
@@ -96,49 +84,5 @@ class Skill
         return $this;
     }
     
-    /**
-     * Set omschrijving
-     *
-     * @param string $omschrijving
-     * @return Skill
-     */
-    public function setOmschrijving($omschrijving)
-    {
-        $this->omschrijving = $omschrijving;
-
-        return $this;
-    }
-
-    /**
-     * Get omschrijving
-     *
-     * @return string 
-     */
-    public function getOmschrijving()
-    {
-        return $this->omschrijving;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     * @return Skill
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get level
-     *
-     * @return integer 
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
+    
 }

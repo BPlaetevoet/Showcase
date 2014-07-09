@@ -5,8 +5,7 @@
     <div class="intro">
         <div class="container">
             {% if afbeelding is defined %}
-                {{ afbeelding.naam }}<br />
-                <img src="{{ asset('uploads/images/') }}{{afbeelding.path}}" />
+                <img src="{{ asset('uploads/afbeeldingen/') }}{{afbeelding.path}}" />
                 <br />
             {% endif %}
             {{form(form)}}

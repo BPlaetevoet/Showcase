@@ -13,6 +13,7 @@ class ProjectType extends AbstractType
         $builder->add('naam', 'text')
                 ->add('omschrijving', 'textarea')
                 ->add('url', 'url');
+                
             
     }
 

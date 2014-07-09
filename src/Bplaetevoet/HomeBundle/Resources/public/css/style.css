@@ -134,11 +134,6 @@ footer li >a:hover{
     padding-left: 10px;
     padding-bottom:25px;
 }
-.new-project:hover{
-    position: relative;
-    top:-20px;
-}
-
 .new-project:hover h3{
     font-weight:600;
     color:green;

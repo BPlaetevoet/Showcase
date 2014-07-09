@@ -7,7 +7,9 @@
             
                 <div class="new-project">
                 <a href="projecten/{{project.naam}}">
-                <img src="{{ asset('bundles/bplaetevoethome/images/projects/'~project.afbeelding~'') }}" alt="{{project.naam}}"/>
+                    {% for image in project.afbeeldingen %}
+                        <img src="{{ asset('uploads/afbeeldingen/'~image.path~'') }}" alt="{{project.naam}}"/>
+                    {% endfor %}
                 <h3 class="text-center">{{ project.naam }}</h3>
                 <ul class="tags">
                     {% for value in project.skills %}

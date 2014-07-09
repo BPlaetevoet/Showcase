@@ -15,6 +15,9 @@ use
 ;
 
 class AdminController extends Controller{
+    public function indexAction(){
+        return $this->render('BplaetevoetHomeBundle:Admin:index.html.twig');
+    }
     public function addskillAction(Request $request){
         $skill = new Skill();
         
@@ -37,7 +40,7 @@ class AdminController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $skills = $em->getRepository('BplaetevoetHomeBundle:Skill')->findAll();
         
-        return $this->render('BplaetevoetHomeBundle:Home:adminskillsform.html.twig', array('form'=>$form->createview(),'skills'=> $skills));
+        return $this->render('BplaetevoetHomeBundle:Admin:adminskillsform.html.twig', array('form'=>$form->createview(),'skills'=> $skills));
     }
     public function editskillAction(Request $request, $skillnaam){
         $em = $this->getDoctrine()->getManager();
@@ -45,13 +48,9 @@ class AdminController extends Controller{
         if($skill){
             
             $skill->setNaam($skill->getNaam());
-            $skill->getUrl();
-            $skill->getOmschrijving();
-            
+                        
             $form = $this->createFormBuilder($skill)
                     ->add('naam', 'text')
-                    ->add('omschrijving', 'textarea')
-                    ->add('url', 'url')
                     ->add('Wijzig', 'submit')
                     ->getForm();
             
@@ -65,7 +64,7 @@ class AdminController extends Controller{
             }
             $skills = $em->getRepository('BplaetevoetHomeBundle:Skill')->findAll();
             
-            return $this->render('BplaetevoetHomeBundle:Home:adminskillsform.html.twig', 
+            return $this->render('BplaetevoetHomeBundle:Admin:adminskillsform.html.twig', 
                     array('form'=>$form->createView(), 'skills'=> $skills) );
         }
     }
@@ -88,15 +87,49 @@ class AdminController extends Controller{
         }
         $em = $this->getDoctrine()->getManager();
         $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
-        return $this->render('BplaetevoetHomeBundle:Home:adminprojects.html.twig', 
+        return $this->render('BplaetevoetHomeBundle:Admin:adminprojects.html.twig', 
                 array('form'=>$form->createView(), 'projecten'=> $projecten));
                 
+    }
+    public function editprojectAction(Request $request, $projectnaam){
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('BplaetevoetHomeBundle:Project')->findOneByNaam($projectnaam);
+        if($project){
+            $form = $this->createFormBuilder($project)
+                ->add('naam', 'text')
+                ->add('url', 'text')
+                ->add('omschrijving', 'textarea')
+                ->add('skills', 'entity', array('label'=>'Selecteer de gebruikte skills',
+                    'class'=>'BplaetevoetHomeBundle:Skill',
+                    'choices'=> $em->getRepository('BplaetevoetHomeBundle:Skill')->findAll(),
+                    'property'=>'naam',
+                    'multiple'=>true,
+                    'expanded'=>true))
+                ->add('Opslaan', 'submit')
+                ->getForm();
+        
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em->persist($project);
+            $em->flush();
+            $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
+            return $this->render('BplaetevoetHomeBundle:Home:projecten.html.twig', array('projecten'=>$projecten));
+        }
+        $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
+        return $this->render('BplaetevoetHomeBundle:Admin:adminprojects.html.twig', array('form'=>$form->createView(),'projecten'=>$projecten));
+    }
     }
     public function addafbeeldingAction(Request $request){
         $afbeelding = new Afbeelding();
         $form = $this->createFormBuilder($afbeelding)
-                ->add('naam')
                 ->add('file')
+                ->add('project', 'entity', array('label'=> 'Kies project',
+                    'class'=>'BplaetevoetHomeBundle:Project',
+                    'query_builder'=>function(\Doctrine\ORM\EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                            ->orderBy('p.naam', 'ASC');
+                    },
+                            'property'=>'naam'))
                 ->add('Uploaden', 'submit')
                 ->getForm();
         $form->handleRequest($request);
@@ -106,10 +139,10 @@ class AdminController extends Controller{
             $em->persist($afbeelding);
             $em->flush();
             
-            return $this->render('BplaetevoetHomeBundle:Home:adminafbeeldingsform.html.twig', array('afbeelding'=>$afbeelding, 'form'=>$form->createView(),));
+            return $this->render('BplaetevoetHomeBundle:Admin:adminafbeeldingsform.html.twig', array('afbeelding'=>$afbeelding, 'form'=>$form->createView(),));
         }
         
-        return $this->render('BplaetevoetHomeBundle:Home:adminafbeeldingsform.html.twig', array('form'=>$form->createView(),));
+        return $this->render('BplaetevoetHomeBundle:Admin:adminafbeeldingsform.html.twig', array('form'=>$form->createView(),));
         
     }
     public function addfullprojecttestAction(Request $request){
@@ -141,7 +174,7 @@ class AdminController extends Controller{
 //            return $this->redirect($this->generateUrl('bplaetevoet_home_projectlist'));
         }
         $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
-        return $this->render('BplaetevoetHomeBundle:Home:adminprojects.html.twig', array('form'=>$form->createView(), 'projecten'=>$projecten));
+        return $this->render('BplaetevoetHomeBundle:Admin:adminprojects.html.twig', array('form'=>$form->createView(), 'projecten'=>$projecten));
 
     }
     public function addfullprojecttestAction3(Request $request){
@@ -158,7 +191,7 @@ class AdminController extends Controller{
             print '</pre>';
         }
         $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
-        return $this->render('BplaetevoetHomeBundle:Home:adminprojects.html.twig', array('form'=>$form->createView(), 'projecten'=>$projecten));
+        return $this->render('BplaetevoetHomeBundle:Admin:adminprojects.html.twig', array('form'=>$form->createView(), 'projecten'=>$projecten));
 
     }
     

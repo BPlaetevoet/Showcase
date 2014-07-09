@@ -1,0 +1,12 @@
+{# Base html file for admin functions #}
+{% extends '::base.html.twig' %}
+{% block navigatie %}
+    <nav id="top-navigatie">
+        <ul class="container">
+            <li><a href="{{ path ('bplaetevoet_admin_adminmenu') }}">Home</a></li>
+            <li><a href="{{ path ('bplaetevoet_admin_addskill') }}">Skills</a></li>
+            <li><a href="{{ path ('bplaetevoet_admin_addproject') }}">Projecten</a></li>
+            <li><a href="{{ path ('bplaetevoet_admin_addimage') }}">Afbeeldingen</a></li>
+        </ul>
+    </nav>
+{% endblock %}

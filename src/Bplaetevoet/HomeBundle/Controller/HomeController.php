@@ -13,6 +13,9 @@ class HomeController extends Controller{
         
         return $this->render('BplaetevoetHomeBundle:Home:index.html.twig', array('projects'=>$projects));
     }
+    public function opleidingAction(){
+        return $this->render('BplaetevoetHomeBundle:Home:cv.html.twig');
+    }
     public function projectlistAction(){
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository("BplaetevoetHomeBundle:Project")->findAll();
