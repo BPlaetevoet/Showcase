@@ -12,15 +12,25 @@ class ProjectType extends AbstractType
     {
         $builder->add('naam', 'text')
                 ->add('omschrijving', 'textarea')
-                ->add('url', 'url');
-                
-            
+                ->add('url', 'url')
+//                ->add('afbeeldingen', new AfbeeldingType())
+               ->add('skills', 'entity', array(
+                    'label'=>'Selecteer de gebruikte skills',
+                    'class'=>'BplaetevoetHomeBundle:Skill',
+                    'query_builder'=> function(\Doctrine\ORM\EntityRepository $er){
+                    return $er->createQueryBuilder('s')->orderBy('s.naam', 'ASC');
+                    },
+                    'property'=>'naam',
+                    'multiple'=>true,
+                    'expanded'=>true))
+                    ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Bplaetevoet\HomeBundle\Entity\Project',
+            'cascade_validation' => true,
         ));
     }
 

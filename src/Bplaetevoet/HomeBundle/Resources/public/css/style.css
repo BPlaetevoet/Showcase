@@ -77,7 +77,7 @@ footer li >a:hover{
     outline: 0px none;
 }
 #top-navigatie li:hover{
-    background-color: #2a6496;
+    background-color: #afa61d;
     
 }
 .intro, .quote{
@@ -94,6 +94,12 @@ footer li >a:hover{
  .projects:nth-child(odd) .new-project a img{
      float:right;
  }
+ .projects:nth-child(odd) .new-project{
+     border-left: 1px solid #c0c0c0;
+     border-right:none;
+         
+ }
+ 
 .new-project{
     transition: all 0.5s ease 0.2s;
     background-color: #f4f4f4;
@@ -102,10 +108,9 @@ footer li >a:hover{
     height: 400px;
     width: 100%;
     overflow:auto;
+    border-right: 1px solid #c0c0c0;
 }
-.new-project:nth-child(odd){
-    border-right: 1px solid #ccc;
-}
+
 
 .new-project a{
     text-decoration:none;
@@ -205,6 +210,14 @@ aside li a:hover{
     font-weight:600;
         
 }
+.cv-row{
+	border-bottom: 1px solid #c0c0c0;
+	line-height:24px;
+	padding:10px;
+}
+.cv-row:nth-last-child(1){ border-bottom:none;}
+.kop{ font-size:1.5em;}
+.cv-dates{ font-weight:600;}
 /*********************************************************************************/
 /* Forms                                                                         */
 /*********************************************************************************/

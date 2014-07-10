@@ -46,12 +46,16 @@ class Project{
      * @var integer
      * 
      * @ORM\OneToMany(targetEntity="Afbeelding", mappedBy="project")
+     * @ORM\JoinColumn(name="afbeelding_id", referencedColumnName="id")
+     * 
      */
     protected $afbeeldingen;
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Skill", mappedBy="project", cascade={"persist"})
-     * @ORM\JoinTable(name="skill_project")
+     * @ORM\ManyToMany(targetEntity="Skill")
+     * @ORM\JoinTable(name="skill_project", joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *                                      inverseJoinColumns={@ORM\JoinColumn(name="skill_id", referencedColumnName="id")}
+     * )
      */
     protected $skills;
     
@@ -144,7 +148,12 @@ class Project{
      * @param \Bplaetevoet\HomeBundle\Entity\Afbeelding $afbeelding
      */
     public function addAfbeelding(Afbeelding $afbeelding){
-        $this->afbeeldingen->add($afbeelding);
+         if(!$this->afbeeldingen->contains($afbeelding)){
+            $this->afbeeldingen->add($afbeelding);
+            $afbeelding->setProject($this);
+            
+        }
+        return $this;
     }
     /**
      * Get afbeelding
@@ -162,7 +171,10 @@ class Project{
      * @return Project
      */
     public function setSkills($skills){
-        $this->skills = new ArrayCollection($skills);
+        $this->skills = new ArrayCollection();
+        foreach($skills as $skill){
+            $this->addSkill($skill);
+        }
         return $this;
     }
     /**
@@ -170,15 +182,16 @@ class Project{
      * @return ArrayCollection
      */
     public function getSkills(){
-        return $this->skills->toArray();
+        return $this->skills;
     }
-    
+    /**
+     * 
+     * @param \Bplaetevoet\HomeBundle\Entity\skill $skill
+     * @return \Bplaetevoet\HomeBundle\Entity\Project
+     */
     public function addSkill(skill $skill){
-        if(!$this->skills->contains($skill)){
-            $this->skills->add($skill);
-            $skill->addProject($this);
-        }
-        return $this;
+        $this->skills->add($skill);
+        
     }
     /** @ORM\PrePersist */
     public function setDatecreated(){

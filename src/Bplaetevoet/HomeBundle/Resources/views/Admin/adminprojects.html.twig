@@ -1,6 +1,6 @@
 {# src/Bplaetevoet/HomeBundle/Resources/views/Home/adminprojects.html.twig #}
 
-{% extends '::base.html.twig' %}
+{% extends 'BplaetevoetHomeBundle:Admin:adminbase.html.twig' %}
 
 {% block content %}
     <div class="container">
@@ -14,6 +14,11 @@
                             <li>url : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a></li>
                             <li>Omschrijving: <br />
                                 {{ project.omschrijving|nl2br }}
+                            </li>
+                            <li> gebruikte skills : 
+                                {% for skill, value in project.skills %}
+                                    {{value.naam}} ,
+                                {% endfor %}
                             </li>
                            
                         </ul>

@@ -10,9 +10,9 @@ bplaetevoet_home_projectlist:
     pattern: /projects
     defaults: { _controller: BplaetevoetHomeBundle:Home:projectlist }
     
-bplaetevoet_home_opleiding:
-    pattern: /opleiding
-    defaults: { _controller: BplaetevoetHomeBundle:Home:opleiding }
+bplaetevoet_home_over:
+    pattern: /over
+    defaults: { _controller: BplaetevoetHomeBundle:Home:over }
     
 bplaetevoet_home_contact:
     pattern: /contact

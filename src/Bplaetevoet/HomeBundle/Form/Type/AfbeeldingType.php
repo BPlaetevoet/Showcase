@@ -10,6 +10,7 @@ class AfbeeldingType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
                 ->add('file', 'file')
+                
                ;
     }
 
@@ -17,6 +18,7 @@ class AfbeeldingType extends AbstractType{
     {
         $resolver->setDefaults(array(
             'data_class' => 'Bplaetevoet\HomeBundle\Entity\Afbeelding',
+            'cascade_validation' => true,
         ));
     }
  

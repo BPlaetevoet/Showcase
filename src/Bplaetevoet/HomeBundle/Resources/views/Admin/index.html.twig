@@ -1,12 +1,28 @@
 {# src/Bplaetevoet/HomeBundle/Resources/views/Admin/index.html.twig #}
 {% extends 'BplaetevoetHomeBundle:Admin:adminbase.html.twig' %}
 {% block content %}
-    <h3> Welkom Bart</h3>
-    Maak uw keuze :
-    <ul>
-        <li>Skills bijwerken</li>
-        <li>Project toevoegen</li>
-        <li>Project wijzigen</li>
-        <li>Afbeeldingen</li>
-    </ul>
+    <div class="container intro">
+        <h2>Maak uw keuze</h2>
+        <div class="blocks">
+            <h3>Skills</h3>
+            <ul>
+                <li><a href="{{ path ('bplaetevoet_admin_addskill') }}">Skills toevoegen</a></li>
+                <li><a href="">Skills bijwerken</a></li>
+            </ul>
+        </div>
+                <div class="blocks">
+                    <h3>Afbeeldingen</h3>
+                    <ul>
+                        <li><a href="{{ path ('bplaetevoet_admin_addimage') }}">Afbeeldingen toevoegen</a></li>
+                    </ul>
+                </div>
+                    <div class="blocks">
+                        <h3>Projecten</h3>
+                        <ul>
+                            <li><a href="{{ path ('bplaetevoet_admin_addproject') }}">Project toevoegen</a></li>
+                        </ul>
+                          
+                    </div> 
+                    
+    </div>
 {% endblock %}

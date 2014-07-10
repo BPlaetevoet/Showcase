@@ -23,11 +23,11 @@ class Skill
      * @ORM\Column(type="string", length=100)
      */
     protected $naam;
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="Project", inversedBy="skills")
-     */
-    protected $project;
+//    
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Project", inversedBy="skills")
+//     */
+//    protected $project;
     
     /**
      * Get id
@@ -61,28 +61,5 @@ class Skill
     {
         return $this->naam;
     }
-    /**
-     * 
-     * @param integer $project
-     */
-    public function setProject($project){
-        $this->project = $project;
-        return $this;
-    }
-    /**
-     * 
-     * @return ArrayCollection
-     */
-    public function getProject(){
-        return $this->project;
-    }
-    
-    public function addProject(project $project){
-        if(!$this->project->contains($project)){
-            $this->project->add($project);
-        }
-        return $this;
-    }
-    
-    
+
 }

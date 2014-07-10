@@ -13,7 +13,7 @@ class HomeController extends Controller{
         
         return $this->render('BplaetevoetHomeBundle:Home:index.html.twig', array('projects'=>$projects));
     }
-    public function opleidingAction(){
+    public function overAction(){
         return $this->render('BplaetevoetHomeBundle:Home:cv.html.twig');
     }
     public function projectlistAction(){

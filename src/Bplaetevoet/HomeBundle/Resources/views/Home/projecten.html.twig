@@ -11,15 +11,13 @@
                         <img src="{{ asset('uploads/afbeeldingen/'~image.path~'') }}" alt="{{project.naam}}"/>
                     {% endfor %}
                 <h3 class="text-center">{{ project.naam }}</h3>
-                <ul class="tags">
-                    {% for value in project.skills %}
-                        {% for item in value %}
-                            <li>{{item.naam}}</li>
-                        {% endfor %}
-                    {% endfor %}
-                </ul>
+                
                     <p class="site-info">{{project.omschrijving}}</p>
                 </a>
+                    {% for skill, value in project.skills %}
+                        <span class="btn btn-info">{{value.naam}}</span>
+                    {% endfor %}
+                
                 </div>        
             </div>
            

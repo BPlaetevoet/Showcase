@@ -8,17 +8,23 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SkillsType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options){
+        
         $builder->add('skills', 'entity', array('label'=>'Selecteer de gebruikte skills',
                     'class'=>'BplaetevoetHomeBundle:Skill',
-                    'choices'=> $em->getRepository('BplaetevoetHomeBundle:Skill')->findAll(),
-                    'property'=>'naam',
+                    'query_builder'=>function(\Doctrine\ORM\EntityRepository $er) {
+                    return $er->createQueryBuilder('s')
+                            ->orderBy('s.naam', 'ASC');
+                    },
+                            'property'=>'naam',
+                    
                     'multiple'=>true,
                     'expanded'=>true));
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Bplaetevoet\HomeBundle\Entity\Skill'
+            'data_class' => 'Bplaetevoet\HomeBundle\Entity\Skill',
+            
         ));
     }
 
