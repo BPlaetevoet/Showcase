@@ -1,0 +1,38 @@
+{# src/Bplaetevoet/HomeBundle/Resources/views/Admin/login.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
+        <meta content="Portfolio site van Bart Plaetevoet - Student PHP Developer @ VDAB 2014" name="description"></meta>
+        <meta content="php, symfony, doctrine, portfolio" name="keywords"></meta>
+        <title>{% block title %}BPlaetevoet PHP Developer{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets '@BplaetevoetHomeBundle/Resources/public/css/*' output='bundles/bplaetevoethome/css/main.css' %}
+                <link type="text/css" rel="stylesheet" media="all" href="{{ asset_url }}" />
+            {% endstylesheets %}
+            <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="col-xs-4 col-xs-offset-4 loginform">
+{% if error %}
+    <div>{{ error.message }}</div>
+{% endif %}
+
+<form action="{{ path('/login_check') }}" method="post">
+    <div class="form-group">
+    <label for="username">Gebruikersnaam:</label>
+    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+    </div>
+    <div class="form-group">
+    <label for="password">Wachtwoord:</label>
+    <input type="password" class="form-control" id="password" name="_password" />
+    </div>
+    <button class="btn btn-danger" type="submit" name="login">Inloggen</button>
+</form>
+           
+            
+        </div>
+    </body>
+</html>

@@ -9,7 +9,7 @@
         <ul>
             {% for skill in skills %}
                 <li>{{skill.naam}} - <a href="{{ path ('bplaetevoet_admin_editskill', {skillnaam:skill.naam}) }}">bewerken</a>
-                    - <a href="{{ path ('bplaetevoet_admin_removeskill', {skillid:skill.id}) }}">verwijderen</a>
+                    - <a href="">verwijderen</a>
                 </li>
             {% endfor %}
         

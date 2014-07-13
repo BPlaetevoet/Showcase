@@ -4,6 +4,10 @@ namespace Bplaetevoet\HomeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+
 
 /**
  * Project
@@ -45,11 +49,23 @@ class Project{
     /**
      * @var integer
      * 
-     * @ORM\OneToMany(targetEntity="Afbeelding", mappedBy="project")
-     * @ORM\JoinColumn(name="afbeelding_id", referencedColumnName="id")
+     * @ORM\Column(name="afbeelding", type="string", length=255)
      * 
      */
-    protected $afbeeldingen;
+    protected $afbeelding;
+    /**
+     * Image file
+     * 
+     * @var File
+     * 
+     * @Assert\File(
+     *          maxSize="2M",
+     *          mimeTypes = {"image/jpeg"},
+     *          maxSizeMessage = "Afbeeldingen mogen maximum 2MB groot zijn.",
+     *          mimeTypesMessage = "Enkel jpg bestanden zijn toegelaten."
+     * )
+     */
+    protected $file;
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Skill")
@@ -64,7 +80,89 @@ class Project{
      * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     protected $datecreated;
-    
+        /**
+     * Voor het opslaan van de afbeelding
+     * 
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload(){
+        if (null !== $this->file){
+//            $filename= sha1(uniqid(mt_rand(), true));
+//            $this->path = $filename.'.'.$this->file->getExtension();
+            $filename = $this->file->getClientOriginalName();
+            $this->afbeelding = $filename;
+        }
+    }
+    /**
+     * Voor het verwijderen van de afbeelding
+     * 
+     * @ORM\PreRemove()
+     */
+    public function removeUpload(){
+        if($file = $this->getAbsolutePath()){
+            unlink($file);
+        }
+        
+    }
+    /**
+     * Opslaan van de upload na persist
+     * 
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload(){
+        if(null === $this->file){
+            return;
+        }
+        $this->file->move(
+                $this->getUploadRootDir(),
+                $this->afbeelding
+                );
+        
+        $this->file = null;
+    }
+    public function getAbsolutePath()
+    {
+        return null === $this->afbeelding
+            ? null
+            : $this->getUploadRootDir().'/'.$this->afbeelding;
+    }
+    public function getWebPath()
+    {
+        return null === $this->afbeelding
+            ? null
+            : $this->getUploadDir().'/'.$this->afbeelding;
+    }
+     protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/afbeeldingen';
+    }
+    /**
+     * Sets file
+     * 
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null){
+        $this->file = $file;
+    }
+    /** 
+     * Get file
+     * 
+     * @return UploadedFile
+     */
+    public function getFile(){
+        return $this->file;
+    }
+   
     /**
      * @return integer
      */
@@ -139,29 +237,18 @@ class Project{
      * @param string $afbeelding
      * @return Project
      */
-    public function setAfbeeldingen($afbeeldingen){
-        $this->afbeeldingen = new ArrayCollection();
+    public function setAfbeelding($afbeelding){
+        $this->afbeelding = $afbeelding;
         return $this;
     }
-    /**
-     * 
-     * @param \Bplaetevoet\HomeBundle\Entity\Afbeelding $afbeelding
-     */
-    public function addAfbeelding(Afbeelding $afbeelding){
-         if(!$this->afbeeldingen->contains($afbeelding)){
-            $this->afbeeldingen->add($afbeelding);
-            $afbeelding->setProject($this);
-            
-        }
-        return $this;
-    }
+    
     /**
      * Get afbeelding
      * 
      * @return string
      */
-    public function getAfbeeldingen(){
-        return $this->afbeeldingen;
+    public function getAfbeelding(){
+        return $this->afbeelding;
     }
   
     /**

@@ -18,6 +18,17 @@ bplaetevoet_home_contact:
     pattern: /contact
     defaults: { _controller: BplaetevoetHomeBundle:Home:contact }
 
+admin_login:
+    pattern: /login
+    defaults: { _controller: BplaetevoetHomeBundle:Admin:login }
+
+/login_check:
+    pattern: /admin/login_check
+     
+/logout:
+    pattern: /admin/logout
+   
+    
 bplaetevoet_admin_adminmenu:
     pattern: /admin
     defaults: { _controller: BplaetevoetHomeBundle:Admin:index }
@@ -44,4 +55,4 @@ bplaetevoet_admin_addimage:
     
 bplaetevoet_admin_addfullproject:
     pattern: /admin/test
-    defaults: { _controller: BplaetevoetHomeBundle:Admin:addfullprojecttest }
+    defaults: { _controller: BplaetevoetHomeBundle:Admin:test }

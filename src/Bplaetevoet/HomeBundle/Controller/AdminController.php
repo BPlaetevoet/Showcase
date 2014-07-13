@@ -4,18 +4,50 @@ namespace Bplaetevoet\HomeBundle\Controller;
 
 use 
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\Security\Core\SecurityContextInterface,
+    Symfony\Component\Security\Core\SecurityContext,
     Bplaetevoet\HomeBundle\Entity\Project,
     Bplaetevoet\HomeBundle\Entity\Skill,
-    Bplaetevoet\HomeBundle\Entity\Afbeelding,
     Bplaetevoet\HomeBundle\Form\Type\ProjectType,
     Bplaetevoet\HomeBundle\Form\Type\AfbeeldingType,
     Bplaetevoet\HomeBundle\Form\RegisterProjectType,
     Symfony\Component\HttpFoundation\Request,
-    Doctrine\Common\Collections\ArrayCollection;
+    Doctrine\Common\Collections\ArrayCollection,
     Doctrine\Common\Util\Debug;
 ;
 
 class AdminController extends Controller{
+    public function loginAction(Request $request)
+    {
+        $session = $request->getSession();
+
+        // get the login error if there is one
+        if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(
+                SecurityContextInterface::AUTHENTICATION_ERROR
+            );
+        } elseif (null !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+            $error = $session->get(SecurityContextInterface::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContextInterface::AUTHENTICATION_ERROR);
+        } else {
+            $error = '';
+        }
+
+        // last username entered by the user
+        $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
+
+        return $this->render(
+            'BplaetevoetHomeBundle:Admin:login.html.twig',
+            array(
+                // last username entered by the user
+                'last_username' => $lastUsername,
+                'error'         => $error,
+            )
+        );
+    }
+    public function loginCheckAction(){
+        
+    }
     public function indexAction(){
         return $this->render('BplaetevoetHomeBundle:Admin:index.html.twig');
     }
@@ -78,23 +110,8 @@ class AdminController extends Controller{
         foreach($project->getSkills() as $skill){
             $originalSkills->add($skill);
         }
-        $form = $this->createFormBuilder($project)
-            ->add('naam', 'text')
-            ->add('url', 'text')
-            ->add('omschrijving', 'textarea')
-            ->add('afbeeldingen', 'collection', array(
-                  'type'=>new AfbeeldingType(), 
-                  'allow_add'=>true,
-                ))
-            ->add('skills', 'entity', array(
-                  'label'=>'Selecteer de gebruikte skills',
-                  'class'=>'BplaetevoetHomeBundle:Skill',
-                  'choices'=> $em->getRepository('BplaetevoetHomeBundle:Skill')->findAll(),
-                  'property'=>'naam',
-                  'multiple'=>true,
-                  'expanded'=>true))
-            ->add('Opslaan', 'submit')
-            ->getForm();
+        $form = $this->createForm(new ProjectType(), $project);
+        $form->add('Opslaan', 'submit');
         
         $form->handleRequest($request);
         if($form->isValid()){
@@ -137,7 +154,6 @@ class AdminController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
         $project = new Project();
-        $afbeelding = new Afbeelding();
         $form = $this->createForm(new ProjectType(), $project);
         $form->add('Toevoegen', 'submit');
         
@@ -153,6 +169,6 @@ class AdminController extends Controller{
         return $this->render('BplaetevoetHomeBundle:Admin:adminprojects.html.twig', array('form'=>$form->createView(), 'projecten'=>$projecten));
 
     }
-    
+     
     
 }

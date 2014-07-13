@@ -91,10 +91,10 @@ footer li >a:hover{
     padding : 0.4em;
     box-shadow:6px 0px 6px 0px rgba(0,0,0,0.75);
  }
- .projects:nth-child(odd) .new-project a img{
+ .new-project:nth-child(odd) a img{
      float:right;
  }
- .projects:nth-child(odd) .new-project{
+ .new-project:nth-child(odd) {
      border-left: 1px solid #c0c0c0;
      border-right:none;
          
@@ -105,49 +105,47 @@ footer li >a:hover{
     background-color: #f4f4f4;
     position: relative;
     float: left;
-    height: 400px;
-    width: 100%;
+    width: 50%;
     overflow:auto;
     border-right: 1px solid #c0c0c0;
+    font-family: 'Questrial', sans-serif;
 }
 
 
 .new-project a{
     text-decoration:none;
 }
-.new-project a img{
-    max-width:40%;
-    float:left;
-    border-radius:6px;
-    padding:0px 5px;
+.img-project{
+    width:70%;
+    margin:10px 15%;
+    border: 6px solid #ccc222;
+    border-radius:12px;
 }
-
 .new-project a h3{
     text-transform: uppercase;
     font-size: 16px;
     margin: 5px;
-    border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
     font-weight:400;
 }
-.new-project a .site-info{
+.new-project .site-info{
     display: block;
     color:#808080;
-    font-size:12px;
-    font-family: Verdana, Helvetica;
+    font-size:14px;
     line-height:20px;
     padding-left: 10px;
+    padding-right:10px;
     padding-bottom:25px;
+}
+.project-skill{
+    background-color: #ccc222;
+    padding:6px 8px;
+    border: 1px solid ;
+    border-radius:4px;
 }
 .new-project:hover h3{
     font-weight:600;
     color:green;
-}
-.new-project:hover a .site-info{
-    color: #000;
-}
-.carroussel{
-    margin-top:5em;
 }
 .blocks {
 	width: 22%;
@@ -216,22 +214,38 @@ aside li a:hover{
 	padding:10px;
 }
 .cv-row:nth-last-child(1){ border-bottom:none;}
+#mijn-cv, .intro{
+    font-family: 'Questrial', sans-serif;
+    font-weigth:600;
+}
 .kop{ font-size:1.5em;}
 .cv-dates{ font-weight:600;}
 /*********************************************************************************/
 /* Forms                                                                         */
 /*********************************************************************************/
 form label {
-	color: #a0918b;
+	color: #585858;
 	padding-right:5px;
 	
 }
 form input, textarea {
-	color:#c1c1c1;
-	padding:4px;
-	width:400px;
-	display: block;
-	border-radius:4px;
+    color:#585858;
+    background-color: #eee;
+    padding:4px;
+    width:400px;
+    display: block;
+    border-radius:4px;
+}
+.loginform{
+    margin-top : 50px;
+    padding-top: 50px;
+    padding-bottom:50px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius : 4px;
+    border: 1px solid brown;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
 }
 
 /*********************************************************************************/

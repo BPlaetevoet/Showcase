@@ -13,7 +13,7 @@ class ProjectType extends AbstractType
         $builder->add('naam', 'text')
                 ->add('omschrijving', 'textarea')
                 ->add('url', 'url')
-//                ->add('afbeeldingen', new AfbeeldingType())
+                ->add('file', 'file', array('label'=>'Afbeelding:'))
                ->add('skills', 'entity', array(
                     'label'=>'Selecteer de gebruikte skills',
                     'class'=>'BplaetevoetHomeBundle:Skill',

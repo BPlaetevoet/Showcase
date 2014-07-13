@@ -1,27 +1,34 @@
 {# src/Bplaetevoet/HomeBundle/Resources/views/Home/projecten.html.twig #}
 {% extends '::base.html.twig' %}
 {% block content %}
+    <section class="intro container">
+        <h2>Projecten</h2>
+        <p>Als beginnend PHP-Ontwikkelaar is het niet evident om al meteen een groot en uitgebreid portfolio te kunnen voorleggen.<br />
+            Daarom dat u op deze pagina enkele van de projecten kunt zien waaraan ik de voorbije maanden met veel plezier gewerkt heb.
+        </p>
+    </section>
     {% for project in projects %}
-        <section class="projects">
-            <div class="container">
+        {% if loop.index is divisible by(2) %} {% else %}<section class="projects">
+            <div class="container">{% endif %}
             
                 <div class="new-project">
-                <a href="projecten/{{project.naam}}">
-                    {% for image in project.afbeeldingen %}
-                        <img src="{{ asset('uploads/afbeeldingen/'~image.path~'') }}" alt="{{project.naam}}"/>
-                    {% endfor %}
-                <h3 class="text-center">{{ project.naam }}</h3>
+                    
+                        <img class="img-project" src="{{ asset('uploads/afbeeldingen/'~project.afbeelding~'') }}" alt="{{project.naam}}"/>
+                  
+                    <h3 class="text-center">{{ project.naam }}</h3>
                 
-                    <p class="site-info">{{project.omschrijving}}</p>
-                </a>
+                <p class="site-info text-center">{{project.omschrijving|nl2br}}</p>
+                
+                <p class="text-center">
                     {% for skill, value in project.skills %}
-                        <span class="btn btn-info">{{value.naam}}</span>
+                        <span class="project-skill">{{value.naam}}</span>
+                        {% if loop.index is divisible by(3) %}</p><p class="text-center">{% endif %}
                     {% endfor %}
-                
+                </p>
+                    <p class="text-center">url :<a href="{{project.url}}">{{project.url}}</a></p>
                 </div>        
-            </div>
-           
-    </section>
+            
+    {% if loop.index is divisible by(2) or (loop.index == loop.last) %}</div></section>{%endif%}
             {% endfor %}
             
 
