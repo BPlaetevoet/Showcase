@@ -4,7 +4,10 @@
     <div class="container">
         <div class="intro">
             <aside id="contactform" class="col-sm-6">
-            <h2> Contacteer mij</h2>
+                {% if flashmessage is defined %}
+                    <span class="success">{{ flashmessage }}</span>
+                    {% else %}
+                        <h2> Contacteer mij</h2>
             <p>Heeft u vragen of opmerkingen gebruik dan onderstaand formulier om contact met mij op te nemen</p>
             {{form_start(form)}}
                 {{form_errors(form)}}
@@ -25,6 +28,9 @@
                 </div>
                 <div class="">
                     {{form_widget(form.verzenden, {'attr':{'class':'btn btn-default'}}) }}
+                    {{form_end(form)}}
+                {% endif %}
+            
             </aside>
             <aside id="adres" class="col-sm-5 col-sm-offset-1 text-center">
                 <h3>Bart Plaetevoet</h3>

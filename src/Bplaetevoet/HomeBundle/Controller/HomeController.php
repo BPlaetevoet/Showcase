@@ -22,6 +22,8 @@ class HomeController extends Controller{
         return $this->render('BplaetevoetHomeBundle:Home:projecten.html.twig', array('projects'=>$projects));
     }
     public function contactAction(Request $request){
+        $mymail = 'bart.plaetevoet@telenet.be';
+        $subject = 'Contactaanvraag via bplaetevoet.be';
         $data = array();
         $form = $this->createFormBuilder($data)
                 ->add('naam', 'text')
@@ -33,9 +35,10 @@ class HomeController extends Controller{
         $form->handleRequest($request);
         
         if($form->isValid()){
-            $message = $naam.' liet volgend bericht na via het contactformulier : \\n';
-            $mail = mail('MY_EMAIL', 'FORM_SUBJECT', $message.' from '.$E-mail );
-            if($mail){
+            $data = $form->getData();
+            $email = $data['email'];
+            $message = $data['naam']." liet volgend bericht na via het contactformulier : \n".$data['boodschap'];
+            if(mail($mymail, $subject, $message, "from: $email" )){
                 return $this->render('BplaetevoetHomeBundle:Home:contact.html.twig', array('flashmessage'=> 'Bedankt voor uw feedback'));
             }
         }
