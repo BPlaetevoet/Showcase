@@ -2,40 +2,37 @@
 // src/Bplaetevoet/HomeBundle/Controller/AdminController.php
 namespace Bplaetevoet\HomeBundle\Controller;
 
-use 
-    Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\Security\Core\SecurityContextInterface,
-    Symfony\Component\Security\Core\SecurityContext,
-    Bplaetevoet\HomeBundle\Entity\Project,
-    Bplaetevoet\HomeBundle\Entity\Skill,
-    Bplaetevoet\HomeBundle\Form\Type\ProjectType,
-    Bplaetevoet\HomeBundle\Form\Type\AfbeeldingType,
-    Bplaetevoet\HomeBundle\Form\RegisterProjectType,
-    Symfony\Component\HttpFoundation\Request,
-    Doctrine\Common\Collections\ArrayCollection,
-    Doctrine\Common\Util\Debug;
+use Bplaetevoet\HomeBundle\Entity\Project;
+use Bplaetevoet\HomeBundle\Entity\Skill;
+use Bplaetevoet\HomeBundle\Form\Type\ProjectType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Util\Debug;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 ;
 
 class AdminController extends Controller{
-    public function loginAction(Request $request)
-    {
-        $session = $request->getSession();
+    public function loginAction(Request $request){
 
+    $session = $request->getSession();
+   
         // get the login error if there is one
         if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(
                 SecurityContextInterface::AUTHENTICATION_ERROR
             );
-        } elseif (null !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+        } elseif (null !== $session  && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
             $error = $session->get(SecurityContextInterface::AUTHENTICATION_ERROR);
             $session->remove(SecurityContextInterface::AUTHENTICATION_ERROR);
-        } else {
+        }
+        else {
             $error = '';
         }
 
-        // last username entered by the user
+//        // last username entered by the user
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
-
         return $this->render(
             'BplaetevoetHomeBundle:Admin:login.html.twig',
             array(
@@ -106,15 +103,22 @@ class AdminController extends Controller{
         if(!$project){
             throw $this->createNotFoundException('Geen project gevonden met naam : '.$projectnaam);
         }
-        $originalSkills = new ArrayCollection();
+/*        $originalSkills = new ArrayCollection();
         foreach($project->getSkills() as $skill){
             $originalSkills->add($skill);
-        }
+        }*/
+        
         $form = $this->createForm(new ProjectType(), $project);
         $form->add('Opslaan', 'submit');
         
         $form->handleRequest($request);
+        $oldAfbeelding = $project->getAfbeelding();
         if($form->isValid()){
+            if ($form->get('file')->getData() !== null){
+                $file = $form->get('file')->getData();
+                $project->removeUpload($oldAfbeelding);
+                $project->setAfbeelding($file->getClientOriginalName());
+            }
             $em->persist($project);
             $em->flush();
             $projecten = $em->getRepository('BplaetevoetHomeBundle:Project')->findAll();
@@ -130,7 +134,7 @@ class AdminController extends Controller{
                 ->add('file')
                 ->add('project', 'entity', array('label'=> 'Kies project',
                     'class'=>'BplaetevoetHomeBundle:Project',
-                    'query_builder'=>function(\Doctrine\ORM\EntityRepository $er) {
+                    'query_builder'=>function(EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                             ->orderBy('p.naam', 'ASC');
                     },

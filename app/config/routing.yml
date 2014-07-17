@@ -2,3 +2,4 @@ bplaetevoet_home:
     resource: "@BplaetevoetHomeBundle/Resources/config/routing.yml"
     prefix:   /
 
+

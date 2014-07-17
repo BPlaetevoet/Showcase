@@ -2,8 +2,8 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     cursist_bplaetevoet
-    database_user:     cursist_bart
+    database_name:     bartpfm121_bplaetevoet
+    database_user:     bartpfm121_bart
     database_password: Bart29
 
     mailer_transport:  smtp

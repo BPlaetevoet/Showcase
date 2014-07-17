@@ -16,9 +16,9 @@
     </head>
     <body>
         <div class="col-xs-4 col-xs-offset-4 loginform">
-{% if error %}
+{#{% if error %}
     <div>{{ error.message }}</div>
-{% endif %}
+{% endif %}#}
 
 <form action="{{ path('/login_check') }}" method="post">
     <div class="form-group">

@@ -17,7 +17,7 @@ bplaetevoet_home_over:
 bplaetevoet_home_contact:
     pattern: /contact
     defaults: { _controller: BplaetevoetHomeBundle:Home:contact }
-
+    
 admin_login:
     pattern: /login
     defaults: { _controller: BplaetevoetHomeBundle:Admin:login }

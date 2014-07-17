@@ -5,6 +5,7 @@ namespace Bplaetevoet\HomeBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Bplaetevoet\HomeBundle\Form\EventListener\AddAfbeeldingFieldSubscriber;
 
 class ProjectType extends AbstractType
 {
@@ -12,9 +13,10 @@ class ProjectType extends AbstractType
     {
         $builder->add('naam', 'text')
                 ->add('omschrijving', 'textarea')
-                ->add('url', 'url')
-                ->add('file', 'file', array('label'=>'Afbeelding:'))
-               ->add('skills', 'entity', array(
+                ->add('url', 'url');
+        $builder->addEventSubscriber(new AddAfbeeldingFieldSubscriber());
+                //->add('file', 'file', array('label'=>'Afbeelding:'))
+        $builder->add('skills', 'entity', array(
                     'label'=>'Selecteer de gebruikte skills',
                     'class'=>'BplaetevoetHomeBundle:Skill',
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository $er){

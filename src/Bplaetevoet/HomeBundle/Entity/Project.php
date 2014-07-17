@@ -6,14 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 
 
 /**
  * Project
- * @ORM\HaslifecycleCallbacks() 
+ * @ORM\HasLifecycleCallbacks() 
  * @ORM\Entity(repositoryClass="Bplaetevoet\HomeBundle\Entity\ProjectRepository")
  * @ORM\Table(name="projects")
+ * @Assert\Callback(methods={"isAfbeeldingUploadedOrExists"})
  */
 class Project{
     /**
@@ -47,7 +49,7 @@ class Project{
     protected $url;
 
     /**
-     * @var integer
+     * @var string
      * 
      * @ORM\Column(name="afbeelding", type="string", length=255)
      * 
@@ -104,6 +106,10 @@ class Project{
             unlink($file);
         }
         
+    }
+    public function removeFile($file){
+        $file_path = $this->getUploadRootDir().'/'.$file;
+        if(file_exists($file_path)) unlink($file_path);
     }
     /**
      * Opslaan van de upload na persist
@@ -230,7 +236,11 @@ class Project{
     public function getUrl(){
         return $this->url;
     }
-    
+    public function isAfbeeldingUploadedOrExists(ExecutionContextInterface $context){
+        if(null === $this->afbeelding && null === $this->file){
+            $context->addViolationAt('file', 'Gelieve een afbeelding te kiezen', array(), null);
+        }
+    }
     /**
      * Set afbeelding
      * 
