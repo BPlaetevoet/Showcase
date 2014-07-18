@@ -1,4 +1,4 @@
-{# src/Bplaetevoet/HomeBundle/Resources/views/cv.html.twig #}
+{# src/Bplaetevoet/HomeBundle/Resources/views/index.html.twig #}
 {% extends '::base.html.twig' %}
 {% block content %}
     <div class="container">
@@ -10,12 +10,7 @@
                     Met mijn 35 lentes ben ik alvast niet het te verwachten profiel van een student/stagiair.<br /> 
                     Toen ik een tijdje terug zonder werk kwam te zitten was de keuze voor mij vlug gemaakt. PHP Developer, een geheime passie van mij die al sinds mijn schooltijd aanwezig was maar door omstandigheden er nooit eerder van gekomen...<strong>DAT WIL IK DOEN</strong>. En waar een wil is, is een weg.<br />
                     Eind maart ben ik dus begonnen aan de VDAB opleiding tot PHP Developer, en nu enkele maanden en opdrachten verder word het stilaan tijd voor een nieuwe uitdaging. <br />
-                    <p> Daarom ben ik nu dus op zoek naar een stage en/of IBO om mij verder bij te scholen, eventueel ook een freelance opdracht, iets waarmee ik opnieuw wat meer ervaring kan opdoen.<br />
-                    
-                    
-                   
-                    
-                    
+                    <br />Daarom ben ik nu dus op zoek naar een stage en/of IBO om mij verder bij te scholen, eventueel ook een freelance opdracht, iets waarmee ik opnieuw waaring kan opdoen.<br />    
                 </em>
             </p>
         </section>
@@ -25,66 +20,66 @@
             <div class="container">
                 <h1 class="text-center">Curriculum vitae</h1>
             <div class="row cv-row">
-                <span class="col-xs-4"><h2>Profiel</h2></span>
-                <span class="col-xs-8">
-                    Flexibele persoonlijkheid, steeds bereid tot bijleren.</br>
+                <div class="col-xs-4"><span class="cv-titel">Profiel</span></div>
+                <div class="col-xs-8">
+                    Flexibele persoonlijkheid, steeds bereid tot bijleren.<br />
                     Sociaal vaardig en commercieel inzicht.<br />
                     Zelfstandig en resultaatgericht.<br />
-                </span>
+                </div>
             </div>
             <div class="row cv-row">
-                <span class="col-xs-4"><h2>Skills</h2></span>
-                <span class="col-xs-8">
-                    <div class="col-xs-4">
+                <div class="col-xs-4"><span class="cv-titel">Skills</span></div>
+                <div class="col-xs-8">
+                    <span class="col-xs-4">
                         HTML5 & CSS3<br />
                         Less<br />
                         Bootstrap<br />
-                    </div>
-                    <div class="col-xs-4">
+                    </span>
+                    <span class="col-xs-4">
                         OOP<br />
                         PHP<br />
                         SQL<br />
                         Symfony<br />
                         
-                    </div>
-                    <div class="col-xs-4">
+                    </span>
+                    <span class="col-xs-4">
                         Doctrine<br />
                         Git<br />
                         Twig<br />
                         Composer<br />
-                    </div>
-                    <p>
+                    </span>
+                    
                         Todo : Javascript/Jquery , Drupal , ....
-                    </p>
-                </span>
+                    
+                </div>
             </div>
                 <div class="row cv-row">
-                    <span class="col-xs-4"><h2>Studies</h2></span>
-                    <span class="col-xs-8">
+                    <div class="col-xs-4"><span class="cv-titel">Studies</span></div>
+                    <div class="col-xs-8">
                         <div class="row">
-                            <span class="pull-right cv-dates">2014 - ...</span>
-                        <span class="col-xs-7">
+                            <div class="pull-right cv-dates">2014 - ...</div>
+                        <div class="col-xs-8">
                             
                             <p class="kop"><strong>PHP Ontwikkelaar</strong></p>
                             <p class="text-muted"><em>VDAB Competentiecentrum Wevelgem</em></p>
-                        </span>
+                        </div>
                             
                         </div>
                         <div class="row">
-                            <span class="pull-right cv-dates">1991 - 1997</span>
-                            <span class="col-xs-7">
+                            <div class="pull-right cv-dates">1991 - 1997</div>
+                            <div class="col-xs-8">
                                 <p class="kop"><strong>TSO</strong></p>
                                 <p class="text-muted"><em>VTI Ieper<br />A2 behaald</em></p>
-                            </span>
+                            </div>
                             
                         </div>
                             </span>
                 </div>
                 <div class="row cv-row">
-                    <span class="col-xs-4"><h2>Ervaring</h2></span>
-                    <span class="col-xs-8">
+                    <div class="col-xs-4 cv-titel">Ervaring</div>
+                    <div class="col-xs-8">
                         <div class="row cv-row">
-                            <span class="pull-right cv-dates">2010 - 2014</span>
+                            <div class="pull-right cv-dates">2010 - 2014</div>
                             <p class="kop"><strong>Technisch commercieel afgevaardigde regio W-Vlaanderen</strong></p>
                             <em><strong>Brumatex NV. Brasschaat</strong></em><br />
                             Autonoom werken, klant en resultaatgerichtheid, sociaal vaardig, sales B2B &amp; B2C,
@@ -99,20 +94,19 @@
                                 </strong></em>
                             
                         </div>
-                    </span>
+                    </div>
                 </div>
                 <div class="row cv-row">
-                    <span class="col-xs-4"><h2>Extra</h2></span>
-                    <span class="col-xs-8">
+                    <div class="col-xs-4"><span class="cv-titel">Extra</span></div>
+                    <div class="col-xs-8">
                         Beschikt over eigen wagen en rijbewijs B<br />
                         Komt in aanmerking voor <a href="http://vdab.be/stage">een stage</a> of <a href="http://vdab.be/ibo">IBO</a> overeenkomst.<br />
                         
                         
-                    </span>
+                    </div>
                 </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 {% endblock %}

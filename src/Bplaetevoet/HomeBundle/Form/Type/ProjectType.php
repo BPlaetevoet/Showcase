@@ -15,7 +15,6 @@ class ProjectType extends AbstractType
                 ->add('omschrijving', 'textarea')
                 ->add('url', 'url');
         $builder->addEventSubscriber(new AddAfbeeldingFieldSubscriber());
-                //->add('file', 'file', array('label'=>'Afbeelding:'))
         $builder->add('skills', 'entity', array(
                     'label'=>'Selecteer de gebruikte skills',
                     'class'=>'BplaetevoetHomeBundle:Skill',

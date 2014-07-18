@@ -9,6 +9,7 @@
         
             {% for project in projecten %}
                 <section class="middle">
+                    <div class="col-xs-7">
                     <h3>{{project.naam}}</h3>
                         <ul>    
                             <li>url : <a href="{{ project.url }}" target="_blank">{{ project.url }}</a></li>
@@ -17,12 +18,21 @@
                             </li>
                             <li> gebruikte skills : 
                                 {% for skill, value in project.skills %}
-                                    {{value.naam}} ,
+                                    {{value.naam}} {% if not loop.last %},{%endif%}
                                 {% endfor %}
                             </li>
                            
                         </ul>
-                    <a href="{{ path ('bplaetevoet_admin_editproject',  {projectnaam:project.naam}) }}">edit</a>
+                    </div>
+                            <div class="col-xs-5">
+                                <img class="img-admin-thumb img-rounded" src="{{ asset('uploads/afbeeldingen/'~project.afbeelding~'') }}" alt="{{project.naam}}"/>
+                        
+                            </div>
+                                <p class="col-xs-12 bg-succes text-center">
+                                    <a href="{{ path ('bplaetevoet_admin_editproject',  {projectnaam:project.naam}) }}"><button class="btn btn-primary">Bewerken</button></a>
+                                </p>
+                                    
+                                                           
                 </section>
             {% endfor %}
         

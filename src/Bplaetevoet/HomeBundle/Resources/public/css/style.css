@@ -90,6 +90,7 @@ footer li >a:hover{
     width:100%;
     padding : 0.4em;
     box-shadow:6px 0px 6px 0px rgba(0,0,0,0.75);
+    overflow: auto;
  }
  .new-project:nth-child(odd) a img{
      float:right;
@@ -173,6 +174,11 @@ footer li >a:hover{
 	line-height: 20px;
         padding:7px 0px;
 }
+.img-admin-thumb{
+    width:200px;
+    height:200px;
+    float: right;
+}
 aside h2, aside h3{
     text-transform: uppercase;
     font-weight:600;
@@ -208,6 +214,15 @@ aside li a:hover{
     font-weight:600;
         
 }
+.cv-titel {
+    font-size:30px;
+    margin-top:20px;
+    margin-bottom:10px;
+    font-family:inherit;
+    font-weight:500;
+    line-height: 1.1;
+    color:inherit;
+}
 .cv-row{
 	border-bottom: 1px solid #c0c0c0;
 	line-height:24px;
@@ -220,6 +235,14 @@ aside li a:hover{
 }
 .kop{ font-size:1.5em;}
 .cv-dates{ font-weight:600;}
+span.btn > a { 
+    text-decoration: none;
+    color:inherit;
+}
+span.btn > a:hover{
+    text-decoration:none;
+    
+}
 /*********************************************************************************/
 /* Forms                                                                         */
 /*********************************************************************************/
